@@ -44,22 +44,10 @@ namespace Barroc_facturen
 
             var githubReleases = JsonConvert.DeserializeObject <List<GitHubRelease>>(response);
 
-            //var githubReleases2 = JsonConvert.DeserializeObject<List<Companydetail>>(response);
-
-            //var githubReleases3 = JsonConvert.DeserializeObject<List<Quotation>>(response);
-
-            //var githubReleases4 = JsonConvert.DeserializeObject<List<Quotation>>(response);
-
-            //var companydetail = JsonConvert.DeserializeObject<List<Companydetail>>(response);
-
-            //var githubReleases2 = JsonConvert.DeserializeObject<Quotation>(response);
-
-            //Teams teams = JsonConvert.DeserializeObject<Teams>(response);
+          
 
 
-
-
-            //for (int i = 0; i < teams.names.Count; i++)
+            
 
 
 
@@ -67,16 +55,13 @@ namespace Barroc_facturen
 
 
             foreach (var release in githubReleases)
-            //for (int i = 0; i < githubReleases.name.Count; i++)
+    
             {
              
 
 
                 CustomerEmaillbl.Text = customerCombobox.Text;
-                //customerCombobox.Items.Add(customeridCombobox.Text);
-
-
-                //customeridCombobox.Text = release.i
+               
 
                 customerCombobox.Items.Add(release);
 
@@ -99,11 +84,7 @@ namespace Barroc_facturen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*DateTimePicker.ShowUpDown = true;
-            DateTimePicker.CustomFormat = "hh:mm";
-            DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;*/
-
-            //InitializeComponent();
+         
             dateTimePicker1.Value = DateTime.Now;
 
             /*ComboboxItem item = new ComboboxItem();
@@ -186,17 +167,11 @@ namespace Barroc_facturen
         private void showcustomerdata(GitHubRelease customer)
         {
             
-            CustomerEmaillbl.Text = customer.email;
-            CustomerNamelbl.Text = customer.name;
+            CustomerEmaillbl.Text = customer.companydetail.email;
+            CustomerNamelbl.Text = customer.companydetail.name;
 
             
 
-           
-           
-
-            //lease_type_id = (leasetypeComboBox.SelectedItem as ComboboxItem).Value.ToString();
-                
-            
         }
 
     

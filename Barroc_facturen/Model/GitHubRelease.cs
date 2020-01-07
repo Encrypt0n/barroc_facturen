@@ -7,7 +7,11 @@ namespace RESTfulAPIConsume.Model
     //public class company { }
     public class Companydetail
     {
-        
+        public override string ToString()
+        {
+            return name;
+        }
+
 
         public int id { get; set; }
         public int user_id { get; set; }
@@ -113,7 +117,7 @@ namespace RESTfulAPIConsume.Model
     {
         public override string ToString()
         {
-            return "Person: " + name + " " + email;
+            return "Company: " + companydetail;
         }
         public int id { get; set; }
         public int role_id { get; set; }
