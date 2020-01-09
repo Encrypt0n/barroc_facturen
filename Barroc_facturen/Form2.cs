@@ -48,13 +48,9 @@ namespace Barroc_facturen
 
 
 
-                //CustomerEmaillbl.Text = customerCombobox.Text;
-                //customerCombobox.Items.Add(customeridCombobox.Text);
+               
 
-
-                //customeridCombobox.Text = release.i
-
-                invoiceComboBox.Items.Add(release);
+                customerComboBox.Items.Add(release);
 
 
 
@@ -77,22 +73,27 @@ namespace Barroc_facturen
 
         private void showinvoicedata(GitHubRelease invoices)
         {
-            LeaseIDlbl.Text = "Lease ID: " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.lease_id.ToString();
+            /* de labels worden gevuld met het Leasenummer, prijs, uiterlijke betaaldatum
+               en eventueel de datum van daadwerkelijke betaling. 
+               Om te kijken welke facturen bij welk contract horen kijken we naar de SelectedIndex van de combobox */
 
-            Pricelbl.Text = "Prijs " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.prijs.ToString();
 
-            FinalPayDatelbl.Text = "Uiterlijke betaaldatum " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.uiterlijke_betaaldatum.ToString();
+            LeaseIDlbl.Text = "Lease ID: " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].lease_id.ToString();
 
-            if (invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.betaald_op != null)
+            Pricelbl.Text = "Prijs " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].prijs.ToString();
+
+            FinalPayDatelbl.Text = "Uiterlijke betaaldatum " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].uiterlijke_betaaldatum.ToString();
+
+            if (invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].betaald_op != null)
             {
-                PaymentFinishedlbl.Text = "Datum voltooide betaling " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.betaald_op.ToString();
+                PaymentFinishedlbl.Text = "Datum voltooide betaling " + invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].betaald_op.ToString();
             }
             else
             {
                 PaymentFinishedlbl.Text = "";
             }
-            lease_id = invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.lease_id;
-            invoice_id = invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice.id;
+            lease_id = invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].lease_id;
+            invoice_id = invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice[invoiceComboBox.SelectedIndex].id;
 
         }
 
@@ -100,27 +101,23 @@ namespace Barroc_facturen
         
       
 
-        private void invoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GitHubRelease invoices = (GitHubRelease)invoiceComboBox.SelectedItem;
-
-            contractComboBox.Items.Clear();
-            contractComboBox.Text = "";
-
-
-            foreach (var item in invoices.companydetail.lease)
-            {
-                contractComboBox.Items.Add(item);
-            }
-        }
+       
 
         private void contractComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            GitHubRelease invoices = (GitHubRelease)customerComboBox.SelectedItem;
 
-            GitHubRelease invoices = (GitHubRelease)invoiceComboBox.SelectedItem;
 
-            showinvoicedata(invoices);
+            invoiceComboBox.Items.Clear();
+            invoiceComboBox.Text = "";
+
+            /* aan de hand van de gekozen waarde in de contract combobox worden de bijbehorende 
+             facturen in de facturen combobox gestopt */
+            foreach (var item in invoices.companydetail.lease[contractComboBox.SelectedIndex].invoice)
+            {
+                invoiceComboBox.Items.Add("Invoice: " + item.id);
+            }
         }
 
         private void updatePayDateButton_Click(object sender, EventArgs e)
@@ -128,7 +125,7 @@ namespace Barroc_facturen
             var request = (HttpWebRequest)WebRequest.Create("http://localhost:8000/api/post2");
 
             var postData = "thing0=" + invoice_id;
-            postData += "&thing1=" + dateTimePicker1.Value.ToString("yyyy/MM/dd");
+            postData += "&thing1=" + dateTimePicker1.Value.ToString("yyyy/MM/dd"); //thing1 bevat de betaaldatum wat doorgegeven wordt naar Laravel 
 
 
             var data = Encoding.ASCII.GetBytes(postData);
@@ -145,11 +142,34 @@ namespace Barroc_facturen
             var response = (HttpWebResponse)request.GetResponse();
 
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            // data word met een post request naar Laravel verzonden
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
+        }
+
+        private void customerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GitHubRelease contracts = (GitHubRelease)customerComboBox.SelectedItem;
+
+            contractComboBox.Items.Clear();
+            contractComboBox.Text = "";
+
+            foreach (var item in contracts.companydetail.lease)
+            {
+                contractComboBox.Items.Add("Contract: " + item.id);
+            }
+
+           
+        }
+
+        private void invoiceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GitHubRelease invoices = (GitHubRelease)customerComboBox.SelectedItem;
+
+            showinvoicedata(invoices);
         }
     }
 }

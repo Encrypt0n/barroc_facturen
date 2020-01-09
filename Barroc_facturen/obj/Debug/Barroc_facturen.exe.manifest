@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Barroc_facturen.exe" size="40432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Barroc_facturen.exe" size="40944">
       <assemblyIdentity name="Barroc_facturen" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JYmuQZkDNyZOj8TxboynZe5qvCffXI3dXu0ALrbccfk=</dsig:DigestValue>
+        <dsig:DigestValue>Q0sRBL5qOOkcwjYC/gvDTo5HlEKyd1dDLpgK9rKB9fQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.invoiceComboBox = new System.Windows.Forms.ComboBox();
+            this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.LeaseIDlbl = new System.Windows.Forms.Label();
             this.Pricelbl = new System.Windows.Forms.Label();
             this.FinalPayDatelbl = new System.Windows.Forms.Label();
@@ -36,52 +36,49 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.contractComboBox = new System.Windows.Forms.ComboBox();
             this.updatePayDateButton = new System.Windows.Forms.Button();
+            this.invoiceComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // invoiceComboBox
+            // customerComboBox
             // 
-            this.invoiceComboBox.FormattingEnabled = true;
-            this.invoiceComboBox.Location = new System.Drawing.Point(480, 225);
-            this.invoiceComboBox.Name = "invoiceComboBox";
-            this.invoiceComboBox.Size = new System.Drawing.Size(261, 24);
-            this.invoiceComboBox.TabIndex = 0;
-            this.invoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.invoiceComboBox_SelectedIndexChanged);
+            this.customerComboBox.FormattingEnabled = true;
+            this.customerComboBox.Location = new System.Drawing.Point(480, 225);
+            this.customerComboBox.Name = "customerComboBox";
+            this.customerComboBox.Size = new System.Drawing.Size(261, 24);
+            this.customerComboBox.TabIndex = 0;
+            this.customerComboBox.SelectedIndexChanged += new System.EventHandler(this.customerComboBox_SelectedIndexChanged);
             // 
             // LeaseIDlbl
             // 
             this.LeaseIDlbl.AutoSize = true;
             this.LeaseIDlbl.Location = new System.Drawing.Point(197, 109);
             this.LeaseIDlbl.Name = "LeaseIDlbl";
-            this.LeaseIDlbl.Size = new System.Drawing.Size(46, 17);
+            this.LeaseIDlbl.Size = new System.Drawing.Size(0, 17);
             this.LeaseIDlbl.TabIndex = 2;
-            this.LeaseIDlbl.Text = "label1";
             // 
             // Pricelbl
             // 
             this.Pricelbl.AutoSize = true;
             this.Pricelbl.Location = new System.Drawing.Point(197, 152);
             this.Pricelbl.Name = "Pricelbl";
-            this.Pricelbl.Size = new System.Drawing.Size(46, 17);
+            this.Pricelbl.Size = new System.Drawing.Size(0, 17);
             this.Pricelbl.TabIndex = 3;
-            this.Pricelbl.Text = "label1";
             // 
             // FinalPayDatelbl
             // 
             this.FinalPayDatelbl.AutoSize = true;
             this.FinalPayDatelbl.Location = new System.Drawing.Point(197, 196);
             this.FinalPayDatelbl.Name = "FinalPayDatelbl";
-            this.FinalPayDatelbl.Size = new System.Drawing.Size(46, 17);
+            this.FinalPayDatelbl.Size = new System.Drawing.Size(0, 17);
             this.FinalPayDatelbl.TabIndex = 4;
-            this.FinalPayDatelbl.Text = "label1";
             // 
             // PaymentFinishedlbl
             // 
             this.PaymentFinishedlbl.AutoSize = true;
             this.PaymentFinishedlbl.Location = new System.Drawing.Point(197, 244);
             this.PaymentFinishedlbl.Name = "PaymentFinishedlbl";
-            this.PaymentFinishedlbl.Size = new System.Drawing.Size(46, 17);
+            this.PaymentFinishedlbl.Size = new System.Drawing.Size(0, 17);
             this.PaymentFinishedlbl.TabIndex = 5;
-            this.PaymentFinishedlbl.Text = "label1";
             // 
             // dateTimePicker1
             // 
@@ -93,7 +90,7 @@
             // contractComboBox
             // 
             this.contractComboBox.FormattingEnabled = true;
-            this.contractComboBox.Location = new System.Drawing.Point(541, 281);
+            this.contractComboBox.Location = new System.Drawing.Point(541, 255);
             this.contractComboBox.Name = "contractComboBox";
             this.contractComboBox.Size = new System.Drawing.Size(200, 24);
             this.contractComboBox.TabIndex = 7;
@@ -109,11 +106,21 @@
             this.updatePayDateButton.UseVisualStyleBackColor = true;
             this.updatePayDateButton.Click += new System.EventHandler(this.updatePayDateButton_Click);
             // 
+            // invoiceComboBox
+            // 
+            this.invoiceComboBox.FormattingEnabled = true;
+            this.invoiceComboBox.Location = new System.Drawing.Point(541, 290);
+            this.invoiceComboBox.Name = "invoiceComboBox";
+            this.invoiceComboBox.Size = new System.Drawing.Size(200, 24);
+            this.invoiceComboBox.TabIndex = 9;
+            this.invoiceComboBox.SelectedIndexChanged += new System.EventHandler(this.invoiceComboBox_SelectedIndexChanged);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.invoiceComboBox);
             this.Controls.Add(this.updatePayDateButton);
             this.Controls.Add(this.contractComboBox);
             this.Controls.Add(this.dateTimePicker1);
@@ -121,7 +128,7 @@
             this.Controls.Add(this.FinalPayDatelbl);
             this.Controls.Add(this.Pricelbl);
             this.Controls.Add(this.LeaseIDlbl);
-            this.Controls.Add(this.invoiceComboBox);
+            this.Controls.Add(this.customerComboBox);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -132,7 +139,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox invoiceComboBox;
+        private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.Label LeaseIDlbl;
         private System.Windows.Forms.Label Pricelbl;
         private System.Windows.Forms.Label FinalPayDatelbl;
@@ -140,5 +147,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox contractComboBox;
         private System.Windows.Forms.Button updatePayDateButton;
+        private System.Windows.Forms.ComboBox invoiceComboBox;
     }
 }

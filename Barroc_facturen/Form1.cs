@@ -87,33 +87,8 @@ namespace Barroc_facturen
          
             dateTimePicker1.Value = DateTime.Now;
 
-            /*ComboboxItem item = new ComboboxItem();
-            item.Text = "3";
-            item.Value = 1;
-
-            leasetypeComboBox.Items.Add(item);
-            leasetypeComboBox.SelectedIndex = 0;
-
-            ComboboxItem item2 = new ComboboxItem();
-            item2.Text = "6";
-            item2.Value = 2;
-
-            leasetypeComboBox.Items.Add(item2);
-            leasetypeComboBox.SelectedIndex = 1;
-
-            ComboboxItem item3 = new ComboboxItem();
-            item3.Text = "9";
-            item3.Value = 3;
-
-            leasetypeComboBox.Items.Add(item3);
-            leasetypeComboBox.SelectedIndex = 2;
-
-            ComboboxItem item4 = new ComboboxItem();
-            item4.Text = "12";
-            item4.Value = 4;
-
-            leasetypeComboBox.Items.Add(item4);
-            leasetypeComboBox.SelectedIndex = 3;*/
+          
+            
 
 
 
@@ -152,13 +127,13 @@ namespace Barroc_facturen
         private void customerCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             GitHubRelease customer = (GitHubRelease)customerCombobox.SelectedItem;
-            //MessageBox.Show(customer.email);
+           
 
             
         }
 
         public int customer_id;
-        //public string lease_type_id;
+     
         public int lease_id;
         public int price;
         
@@ -250,7 +225,8 @@ namespace Barroc_facturen
                 document.Close();
             }
 
-
+            /* de Chunk stukjes bevatten de informatie van alle labels en dat wordt
+               als een kolom in een pdf gestopt */
 
 
 
@@ -264,9 +240,9 @@ namespace Barroc_facturen
 
             var postData = "thing0=" + lease_id;
             postData += "&thing1=" + dateTimePicker1.Value.ToString("yyyy/MM/dd");
-            //postData += "&thing2=" + Uri.EscapeDataString();
-            postData += "&thing3=" + price;
-            postData += "&thing4=" + Uri.EscapeDataString("Welkom01");
+            
+            postData += "&thing3=" + price;  // 
+            
 
             var data = Encoding.ASCII.GetBytes(postData);
 
@@ -300,7 +276,7 @@ namespace Barroc_facturen
             {
                 quotationComboBox.Items.Add(item);
             }
-            
+            // aan de hand van de gekozen klant worden de bijbehorende offertes in de quotation combobox gestopt
 
         }
 
@@ -317,47 +293,49 @@ namespace Barroc_facturen
 
                 if (customer.companydetail.quotations != null)
                 {
+                    // de labels worden gevuld met het de bestelde producten + prijs en de klantgegevens
+
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_light != null)
                     {
-                        //MachinesListBox.Items.Add(customer.companydetail.quotations[0].italian_light + " x " + "Italian Light: " + int.Parse(customer.companydetail.quotations[0].italian_light) * 280);
+                        
                         italian_lightlbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_light + " x " + "Italian Light: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_light) * 280;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian != null)
                     {
-                        //MachinesListBox.Items.Add(customer.companydetail.quotations[0].italian + " x " + "Italian: " + int.Parse(customer.companydetail.quotations[0].italian) * 290);
+                      
                         italianlbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian + " x " + "Italian: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian) * 290;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe != null)
                     {
-                        //MachinesListBox.Items.Add(customer.companydetail.quotations[0].italian_deluxe + " x " + "Italian Deluxe: " + int.Parse(customer.companydetail.quotations[0].italian_deluxe) * 350);
+                       
                         italiandeluxelbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe + " x " + "Italian Deluxe: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe) * 350;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe_special != null)
                     {
-                        //MachinesListBox.Items.Add(customer.companydetail.quotations[0].italian_deluxe_special + " x " + "Italian Deluxe Special: " + int.Parse(customer.companydetail.quotations[0].italian_deluxe_special) * 375);
+                       
                         italiandeluxespeciallbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe_special + " x " + "Italian Deluxe Special: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].italian_deluxe_special) * 375;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_beneficio != null)
                     {
-                        //BeansListBox.Items.Add(customer.companydetail.quotations[0].espresso_beneficio + " x " + "Espresso Beneficio: " + int.Parse(customer.companydetail.quotations[0].espresso_beneficio) * 21.60);
+                       
                         espressobeneficiolbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_beneficio + " x " + "Espresso Beneficio: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_beneficio) * 21.60;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].yellow_bourbon_brasil != null)
                     {
-                        //BeansListBox.Items.Add(customer.companydetail.quotations[0].yellow_bourbon_brasil + " x " + "Yellow Bourbon Brasil: " + int.Parse(customer.companydetail.quotations[0].yellow_bourbon_brasil) * 23.20);
+                        
                         yellowbourbonbrasillbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].yellow_bourbon_brasil + " x " + "Yellow Bourbon Brasil: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].yellow_bourbon_brasil) * 23.20;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_roma != null)
                     {
-                        //BeansListBox.Items.Add(customer.companydetail.quotations[0].espresso_roma + " x " + "Espresso Roma: " + int.Parse(customer.companydetail.quotations[0].espresso_roma) * 20.80);
+                       
                         espressoromalbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_roma + " x " + "Espresso Roma: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].espresso_roma) * 20.80;
                     }
                     if (customer.companydetail.quotations[quotationComboBox.SelectedIndex].red_honey_honduras != null)
                     {
-                        //BeansListBox.Items.Add(customer.companydetail.quotations[0].red_honey_honduras + " x " + "Red Honey Honduras: " + int.Parse(customer.companydetail.quotations[0].red_honey_honduras) * 27.80);
+                       
                         redhoneyhonduraslbl.Text = customer.companydetail.quotations[quotationComboBox.SelectedIndex].red_honey_honduras + " x " + "Red Honey Honduras: " + "€" + int.Parse(customer.companydetail.quotations[quotationComboBox.SelectedIndex].red_honey_honduras) * 27.80;
                     }
-                    //customer_id = customer.companydetail.id;
+                    
                     lease_id = customer.companydetail.lease[quotationComboBox.SelectedIndex].id;
                     price = int.Parse(customer.companydetail.lease[quotationComboBox.SelectedIndex].monthly_costs);
 

@@ -41,7 +41,7 @@ namespace RESTfulAPIConsume.Model
     {
         public override string ToString()
         {
-            return "Contract: " + id;
+            return "Invoice: " + invoice;
         }
         public int id { get; set; }
         public int lease_type_id { get; set; }
@@ -53,7 +53,9 @@ namespace RESTfulAPIConsume.Model
         public string created_at { get; set; }
         public string updated_at { get; set; }
 
-        public Invoice invoice { get; set; }
+        public List<Invoice> invoice { get; set; }
+
+        //public List<Invoice> invoice_id { get; set; }
 
         //public List<Lease> lease { get; set; }
     }
@@ -62,7 +64,7 @@ namespace RESTfulAPIConsume.Model
     {
         public override string ToString()
         {
-            return "Contract: " + id;
+            return "Invoice " + id.ToString();
         }
 
         public int id { get; set; }
